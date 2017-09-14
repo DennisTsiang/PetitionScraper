@@ -25,7 +25,7 @@ module PetitionScraper
     for i in 1..@@last_page_number
       @@urls << (PETITIONS_URL + i.to_s)
     end
-    puts "Calling multiple http requests"
+    puts "Calling multiple http requests (%d urls in total)" % (@@last_page_number)
     while (!@@urls.empty?)
       get_petition_count_async(@@urls)
       @@semaphore.acquire
@@ -97,5 +97,5 @@ module PetitionScraper
 end
 
 #Script - Used in debugging
-#include PetitionScraper
-#get_total_signature_count()
+include PetitionScraper
+get_total_signature_count()
